@@ -5,6 +5,6 @@ export const register = async ({ payload }) => {
     const response = await axios.post('/register', payload);
     return response.data.data;
   } catch (error) {
-    throw error?.response?.data?.errorCode;
+    throw error?.response?.data;
   }
 };

@@ -23,6 +23,7 @@ import { Controller, useForm } from "react-hook-form";
 const RegisterForm = () => {
 
   const { register, isRegisterLoading, error, isError } = useRegister();
+  const [errorMessages, setErrorMessages] = useState();
 
   const validationSchema = getRegistrationSchema();
 
@@ -37,9 +38,14 @@ const RegisterForm = () => {
     },
   });
 
+  useEffect(()=>{
+    if(isError && !isRegisterLoading){
+      setErrorMessages(error.errors);
+    }
+  }, [isRegisterLoading])
+
   const onSubmit = async (values, event) => {
     event.preventDefault();
-    if (!error) {
       const value = {
         firstName: values.firstName,
         lastName: values.lastName,
@@ -47,9 +53,7 @@ const RegisterForm = () => {
         password: values.password,
         passwordConfirmation: values.passwordConfirmation,
       };
-      console.log(value);
       register({ payload: value });
-    }
   };
 
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -117,7 +121,11 @@ const RegisterForm = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage className="text-xs" />
+                  {errorMessages?.email && (
+                    <FormMessage className="text-xs">
+                      {errorMessages.email}
+                    </FormMessage>
+                  )}
                 </FormItem>
               )}
             />
@@ -178,11 +186,15 @@ const RegisterForm = () => {
           </div>
 
           <div className="flex justify-between">
-            <Button type="submit" size="lg" className="w-full uppercase" disabled={isRegisterLoading}>
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full uppercase"
+              disabled={isRegisterLoading}
+            >
               Submit
             </Button>
           </div>
-
         </form>
       </Form>
     </>
