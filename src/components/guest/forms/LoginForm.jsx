@@ -25,8 +25,8 @@ const LoginForm = () => {
   const form = useForm({
     resolver: yupResolver(loginSchema),
     defaultValues: {
-      email: "daryll.alonte@gmail.com",
-      password: "samplePassword1@",
+      email: "",
+      password: "",
     },
   });
   const [isLoginLoading, setIsLoginLoading] = useState(false);
