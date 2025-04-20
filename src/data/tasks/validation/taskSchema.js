@@ -5,7 +5,6 @@ const addTaskSchema = Yup.object().shape({
   content: Yup.string().required().label("Task content"),
   attachment: Yup.mixed()
     .test("fileSize", "Image size is too large", (value) => {
-      console.log([value, "sizee"])
       if (!value) return true;
       return value.size <= 4194304;
     }),

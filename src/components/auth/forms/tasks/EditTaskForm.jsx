@@ -59,7 +59,6 @@ const EditTaskForm = ({ task }) => {
     if (image != null) {
       values = { ...values, attachment: image }
     }
-    console.log(values);
     editTask({
       title: task.title,
       payload: values,

@@ -12,7 +12,6 @@ const useAddTask = () => {
       alert("Successfully added task.");
     },
     onError: (error) => {
-      console.log(error.response.data.message.title[0]);
       alert(error.response.data.message.title[0]);
     },
   });

@@ -4,7 +4,6 @@ export const listTask = async (searchParams) => {
   const parsed = await axiosInterceptor
     .get(`/tasks?${searchParams}`)
     .then((response) => {
-      console.log(['task', response.data])
       let data = response.data;
       return { data: data?.data, meta: data?.meta };
     });
