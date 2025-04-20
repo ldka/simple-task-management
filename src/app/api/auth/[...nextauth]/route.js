@@ -12,7 +12,7 @@ export const authOptions = {
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const res = await fetch("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/sanctum/csrf-cookie`, {
           method: "GET",
         });
         const setCookieHeader = res.headers.get("set-cookie");
@@ -65,7 +65,6 @@ export const authOptions = {
           })
           .catch((error) => {
             let errorMessage = error.response.data.message;
-            console.log(errorMessage)
             return { error: errorMessage };
           });
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getSession } from "next-auth/react";
 const ApiClient = () => {
   const instance = axios.create({
-    baseURL: "http://127.0.0.1:8000/api",
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
