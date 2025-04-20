@@ -28,7 +28,7 @@ export const addTask = async ({ payload, form }) => {
 export const editTask = async ({ title, payload, form }) => {
   try {
     const parsed = await axiosInterceptor
-      .patch(`/tasks/${title}`, payload, {
+      .post(`/tasks/${title}?_method=PATCH`, payload, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
